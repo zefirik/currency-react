@@ -16,13 +16,14 @@ function App() {
         (result) => {
           setIsLoaded(true);
           setItems(result);
+          console.log(result);
         },
         (error) => {
           setIsLoaded(true);
           setError(error);
         }
       )
-  }, [])
+   }, []);
 
   if (error) {
     return <div>Ошибка: {error.message}</div>;
