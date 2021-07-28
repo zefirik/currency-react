@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+
+
+
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetch("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
+
+  if (error) {
+    return <div>Ошибка: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Загрузка...</div>;
+  } else {
+    return (
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>
+            {item.ccy} : {item.buy} / {item.sale}
+          </li>
+        ))}
+      </ul>
+    );
+  }
 }
 
 export default App;
