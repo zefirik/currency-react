@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const CalcBuy = (props) => {
     
-    const [name, setName] = useState("");
+    const [amount, setAmount] = useState("");
   
       const handleSubmit = (evt) => {
       evt.preventDefault();  
@@ -15,15 +15,15 @@ const CalcBuy = (props) => {
                     Amount:
                     <input
                         type="number"
-                        value={name}
-                        onChange={e => setName(e.target.value)}
+                        value={amount}
+                        onChange={e => setAmount(e.target.value)}
                     /> UAH
                 </label>
              </form>
             <ul>
             {props.rates.map((item) => (
                 <p key={item.ccy}>
-                {item.ccy} : {( name / item.sale  ).toFixed(2)}
+                {item.ccy} : {( amount / item.sale  ).toFixed(2)}
                 </p>
             ))}
             </ul>     
