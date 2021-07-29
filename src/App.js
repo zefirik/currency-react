@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 
 
-
 import "./App.css";
+import Header from "./components/header/header";
+import NavBar from "./components/navbar/navBar";
+import CalcBuy from "./components/calcBuy/calcBuy";
+import CalcSale from "./components/calcSale/calcSale";
 
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+  const [rates, setRates] = useState([]);
 
   useEffect(() => {
     fetch("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
@@ -15,7 +18,7 @@ function App() {
       .then(
         (result) => {
           setIsLoaded(true);
-          setItems(result);
+          setRates(result);
           console.log(result);
         },
         (error) => {
@@ -31,13 +34,12 @@ function App() {
     return <div>Загрузка...</div>;
   } else {
     return (
-      <ul>
-        {items.map(item => (
-          <li key={item.id}>
-            {item.ccy} : {item.buy} / {item.sale}
-          </li>
-        ))}
-      </ul>
+      <div>
+      <Header rates = {rates} />
+      <NavBar />
+      <CalcBuy rates = {rates} />
+      <CalcSale rates= {rates} />
+      </div>
     );
   }
 }
