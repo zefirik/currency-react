@@ -5,9 +5,9 @@ const CalcBuy = (props) => {
     
     return (
         <div className = "CalcBuy">
-            <p> You can buy for:</p>
+            <p> You can buy for: you don't have money</p>
             <ul>
-            {props.rates.map(item => (
+            {props.rates.map((item) => (
                 <li key={item.ccy}>
                 {item.ccy} : {item.sale}
                 </li>

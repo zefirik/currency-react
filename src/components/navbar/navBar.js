@@ -1,14 +1,14 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     return (
         <div className = "NavBar">
             <div>
-                <a href= "/calcBuy"> Buy </a>
+                <Link to='/buy'> Buy </Link>
             </div>
             <div>
-                <a href= "/calcSale"> Sale </a>
-                
+                <Link to='/sale'> Sale </Link>                
             </div>
         </div>
     );

@@ -6,6 +6,7 @@ import Header from "./components/header/header";
 import NavBar from "./components/navbar/navBar";
 import CalcBuy from "./components/calcBuy/calcBuy";
 import CalcSale from "./components/calcSale/calcSale";
+import { BrowserRouter, Route } from "react-router-dom";
 
 function App() {
   const [error, setError] = useState(null);
@@ -34,12 +35,21 @@ function App() {
     return <div>Загрузка...</div>;
   } else {
     return (
-      <div>
-      <Header rates = {rates} />
-      <NavBar />
-      <CalcBuy rates = {rates} />
-      <CalcSale rates= {rates} />
-      </div>
+        <div className = "app-wrapper">
+        <Header rates = {rates} />
+        <BrowserRouter>
+          <NavBar />
+            <div className = "app-wrapper-calc">
+              <Route path="/buy">
+                <CalcBuy rates = {rates} />
+              </Route>
+              <Route path="/sale">
+              <CalcSale rates= {rates} />
+              </Route> 
+            </div>
+        </BrowserRouter>
+        </div>
+     
     );
   }
 }
