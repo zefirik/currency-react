@@ -7,6 +7,8 @@ import NavBar from "./components/navbar/navBar";
 import CalcBuy from "./components/calcBuy/calcBuy";
 import CalcSale from "./components/calcSale/calcSale";
 import { BrowserRouter, Route } from "react-router-dom";
+import { Container } from "react-bootstrap";
+
 
 function App() {
   const [error, setError] = useState(null);
@@ -35,21 +37,18 @@ function App() {
     return <div>Загрузка...</div>;
   } else {
     return (
-        <div className = "app-wrapper">
+      <Container className="text-center">
         <Header rates = {rates} />
         <BrowserRouter>
           <NavBar />
-            <div className = "app-wrapper-calc">
               <Route path="/buy">
                 <CalcBuy rates = {rates} />
               </Route>
               <Route path="/sale">
               <CalcSale rates= {rates} />
               </Route> 
-            </div>
         </BrowserRouter>
-        </div>
-     
+        </Container>
     );
   }
 }

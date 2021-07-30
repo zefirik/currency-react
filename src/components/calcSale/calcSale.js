@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 const CalcSale = (props) => {
-   
+    {/*selectedCurr по умолчанию поставил 0, 
+    так как до смены валют не тянутся данные*/}
     const [selectedCurr,setSelectedCurr] = useState(0);
     const [amount, setAmount] = useState("");
 
