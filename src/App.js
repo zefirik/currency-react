@@ -7,7 +7,7 @@ import NavBar from "./components/navbar/navBar";
 import CalcBuy from "./components/calcBuy/calcBuy";
 import CalcSale from "./components/calcSale/calcSale";
 import { BrowserRouter, Route } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 
 
 function App() {
@@ -34,7 +34,11 @@ function App() {
   if (error) {
     return <div>Ошибка: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Загрузка...</div>;
+    return (<Container className="text-center">
+            <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+            </Spinner>
+            </Container>)
   } else {
     return (
       <Container className="text-center">
