@@ -7,16 +7,13 @@ import { Container,
 const CalcBuy = (props) => {
     
     const [amount, setAmount] = useState("");
-  
-      const handleSubmit = (evt) => {
-      evt.preventDefault();  
-      }
+
     return (
         <Container>
             <p> You can buy for:</p>
             <Row md = "auto" xs = "auto" className = "d-flex justify-content-center" >  
                 <Col>  
-                <form onSubmit = {handleSubmit}>
+                <form>
                     <Form.Control type="number"  
                                   value = {amount}
                                   onChange = {e => setAmount(e.target.value)}
