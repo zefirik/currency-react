@@ -3,11 +3,13 @@ import { Container,
          Row,
          Col,
          Form } from "react-bootstrap";
+import { useFetch } from "../../components/hooks/useFetch";
 
-const CalcBuy = (props) => {
+const CalcBuy = () => {
     
     const [amount, setAmount] = useState("");
-
+    const apiUrl = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
+    const {rates} = useFetch( apiUrl );
     return (
         <Container>
             <p> You can buy for:</p>
@@ -24,7 +26,7 @@ const CalcBuy = (props) => {
             </Row>
             <Row>  
             <ul  className="mt-3" >
-            {props.rates.map((item) => (
+            {rates.map((item) => (
                 <p key={item.ccy}>
                 {item.ccy} : {( amount / item.sale  ).toFixed(2)}
                 </p>

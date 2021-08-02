@@ -23,10 +23,10 @@ function LoadingSpinner() {
 
 function App() {
   const apiUrl = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
-  const [rates, loading, error] = useFetch( apiUrl );
-   if(error) {
+  const {rates, loading, error} = useFetch( apiUrl );
+  if(error) {
     return <div>Ошибка: {error.message}</div>;
-   }
+  }
 
   if (loading) {
     return LoadingSpinner();
@@ -38,7 +38,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
           <Route path="/buy">
-            <CalcBuy rates = {rates} />
+            <CalcBuy />
           </Route>
           <Route path="/sale">
           <CalcSale rates= {rates} />

@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 
 function useFetch(url) {
 
-  const [rates, setRates] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [rate, setRates] = useState([]);
+  const [load, setLoading] = useState(true);
+  const [err, setError] = useState(null);
 
   async function fetchUrl() {
     try{
@@ -21,6 +21,8 @@ function useFetch(url) {
   useEffect(() => {
     fetchUrl();
   },[]);
-  return [rates, loading, error];
+  return {rates : rate, 
+          loading : load,
+          error : err}; //переписать под объект(ключ : значение)б чтоб при перестановки массив не ломал
 }
 export { useFetch };
