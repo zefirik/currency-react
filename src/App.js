@@ -20,20 +20,17 @@ function LoadingSpinner() {
 }
 
 
-
-
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [rates, setRates] = useState([]);
-
-  async function FetchingData(url) {
+  
+  async function fetchData(url) {
     try {
       const response = await fetch(url);
       const jsonData = await response.json();
-                    setIsLoaded(true);
-                    setRates(jsonData);
-                    console.log(jsonData);
+      setIsLoaded(true);
+      return jsonData;
     }
     catch (error){
         setIsLoaded(true);
@@ -43,7 +40,9 @@ function App() {
 
   useEffect(() => {
     const apiUrl = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
-    FetchingData(apiUrl)
+    fetchData(apiUrl).then((rates) => {
+      setRates(rates);
+    })
   },[]);
   
    if(error) {
