@@ -26,30 +26,26 @@ function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [rates, setRates] = useState([]);
-  const apiUrl = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
-  const json = function (response) {
-              return response.json()
-              }
-  const res = function (result) {
-              setIsLoaded(true);
-              setRates(result);
-              console.log(result);
-              }
-  const err = function(error){
-              setIsLoaded(true);
-              setError(error);
-              }
 
-  
+  async function FetchingData(url) {
+    try {
+      const response = await fetch(url);
+      const jsonData = await response.json();
+                    setIsLoaded(true);
+                    setRates(jsonData);
+                    console.log(jsonData);
+    }
+    catch (error){
+        setIsLoaded(true);
+        setError(error);
+    }
+  };
+
   useEffect(() => {
-    fetch(apiUrl)
-      .then(json)
-      .then(res)
-      .catch(err)
-   },[]);
-
-   
-
+    const apiUrl = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
+    FetchingData(apiUrl)
+  },[]);
+  
    if(error) {
     return <div>Ошибка: {error.message}</div>;
    }
