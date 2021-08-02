@@ -5,7 +5,7 @@ const Header = (props) => {
 
     return (
         <Container>
-          <Row >
+          <Row className="my-3">
             <h1> Actual currency </h1>
           </Row>
           <Row >

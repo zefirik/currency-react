@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Form, Container, Row, Col  } from "react-bootstrap"
+import { Form, 
+         Container, 
+         Row, 
+         Col } from "react-bootstrap"
 
 const CalcSale = (props) => {
     /*selectedCurr по умолчанию поставил 0, 
@@ -18,18 +21,16 @@ const CalcSale = (props) => {
 
     return (
         <Container>
-                <p> You can sale: (pls choose first currencies) </p> 
-
-             
+            <p> You can sale: (pls choose first currencies) </p>
             <form onSubmit = {handleSubmit} >
-            <Row md = "auto" className = "d-flex justify-content-center"> 
-            <Col md = {2}>  
+            <Row className = "d-flex justify-content-center"> 
+            <Col sm="5" lg="3">   
                 <Form.Control type="number"  
                               value = {amount}
-                              onChange = {e => setAmount(e.target.value)} 
-                />  
+                              onChange = {e => setAmount(e.target.value)}
+                              className="text-center" />  
             </Col>
-            <Col md= {1}>  
+            <Col  sm="3" lg="2">  
                 <Form.Select value = {selectedCurr} 
                           onChange = {handleSelectChange} 
                           aria-label="Floating label select example">
@@ -42,7 +43,7 @@ const CalcSale = (props) => {
             </Col>
             </Row>  
             </form>
-            <p> You can get: {(amount* selectedCurr).toFixed(2)} UAH</p>  
+            <p className="mt-3"> You can get: {(amount* selectedCurr).toFixed(2)} UAH</p>  
         </Container> 
     );
 }

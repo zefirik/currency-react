@@ -36,7 +36,7 @@ function App() {
   } else if (!isLoaded) {
     return (<Container className="text-center">
             <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
+            <span className="visually-hidden"> Loading... </span>
             </Spinner>
             </Container>)
   } else {

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container,
+         Row,
+         Col,
+         Form } from "react-bootstrap";
 
 const CalcBuy = (props) => {
     
@@ -9,28 +12,28 @@ const CalcBuy = (props) => {
       evt.preventDefault();  
       }
     return (
-        <Container className = "CalcBuy">
+        <Container>
             <p> You can buy for:</p>
-            <Row md = "auto" className = "d-flex justify-content-center" >  
-            <form onSubmit = {handleSubmit} >
-            <Col md>  
-                <Form.Control type="number"  
-                              value = {amount}
-                              onChange = {e => setAmount(e.target.value)}
-                              placeholder="UAH" 
-                /> 
+            <Row md = "auto" xs = "auto" className = "d-flex justify-content-center" >  
+                <Col>  
+                <form onSubmit = {handleSubmit}>
+                    <Form.Control type="number"  
+                                  value = {amount}
+                                  onChange = {e => setAmount(e.target.value)}
+                                  placeholder="UAH"
+                                  className="text-center" /> 
+                </form>
                 </Col>
-            </form>
-            <h3><span className="badge bg-secondary">UAH</span></h3>
-            </Row> 
-            <ul>
+            </Row>
+            <Row>  
+            <ul  className="mt-3" >
             {props.rates.map((item) => (
                 <p key={item.ccy}>
                 {item.ccy} : {( amount / item.sale  ).toFixed(2)}
                 </p>
             ))}
             </ul>     
-           
+            </Row> 
         </Container>
         
     );

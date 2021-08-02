@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 
 const NavBar = () => {
     return (
-           <div>
+           <div  className="my-3">
             <ul className = "nav justify-content-center">
             <li className = "nav-item">
                 <Link className="nav-link" to='/buy'> Buy </Link>
