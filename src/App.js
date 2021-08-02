@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 
 import "./App.css";
@@ -8,6 +8,7 @@ import CalcBuy from "./components/calcBuy/calcBuy";
 import CalcSale from "./components/calcSale/calcSale";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Container, Spinner } from "react-bootstrap";
+import { useFetch } from "./components/hooks/useFetch";
 
 function LoadingSpinner() {
   return (
@@ -21,35 +22,13 @@ function LoadingSpinner() {
 
 
 function App() {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [rates, setRates] = useState([]);
-  
-  async function fetchData(url) {
-    try {
-      const response = await fetch(url);
-      const jsonData = await response.json();
-      setIsLoaded(true);
-      return jsonData;
-    }
-    catch (error){
-        setIsLoaded(true);
-        setError(error);
-    }
-  };
-
-  useEffect(() => {
-    const apiUrl = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
-    fetchData(apiUrl).then((rates) => {
-      setRates(rates);
-    })
-  },[]);
-  
+  const apiUrl = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
+  const [rates, loading, error] = useFetch( apiUrl );
    if(error) {
     return <div>Ошибка: {error.message}</div>;
    }
 
-  if (!isLoaded) {
+  if (loading) {
     return LoadingSpinner();
   }
 
