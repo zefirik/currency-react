@@ -10,6 +10,7 @@ const CalcBuy = () => {
     const [amount, setAmount] = useState("");
     const apiUrl = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
     const {rates} = useFetch( apiUrl );
+
     return (
         <Container>
             <p> You can buy for:</p>

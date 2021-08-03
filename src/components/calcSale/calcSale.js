@@ -6,7 +6,7 @@ import { Form,
 
 const CalcSale = (props) => {
     
-   let [{buy}] = props.rates;
+    let [{buy}] = props.rates;
 
     
     const [selectedCurr,setSelectedCurr] = useState(buy);

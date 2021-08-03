@@ -1,7 +1,10 @@
 import React from "react";
 import { Container, ListGroup, Row } from "react-bootstrap";
+import { useFetch } from "../hooks/useFetch";
 
-const Header = (props) => {
+const Header = () => {
+  const apiUrl = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
+  const {rates} = useFetch( apiUrl );
 
     return (
         <Container>
@@ -10,7 +13,7 @@ const Header = (props) => {
           </Row>
           <Row >
             <ListGroup variant="horizontal" className = "d-flex justify-content-center" >
-              {props.rates.map((item) => (
+              {rates.map((item) => (
                 <ListGroup.Item key = {item.ccy}>
                   {item.ccy} : <br/>
                   {item.buy} <br/> {item.sale}

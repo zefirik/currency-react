@@ -23,6 +23,6 @@ function useFetch(url) {
   },[]);
   return {rates : rate, 
           loading : load,
-          error : err}; //переписать под объект(ключ : значение)б чтоб при перестановки массив не ломал
+          error : err};
 }
 export { useFetch };
